@@ -61,7 +61,7 @@ class App extends Component{
           <tbody>
             {items.map(item => (
                 <tr key={item.id}>
-                  <td onClick={() => this.showModal(item)}>{item.title}</td>
+                  <td className="movieName" onClick={() => this.showModal(item)}>{item.title}</td>
                   <td>{item.director}</td>
                   <td>{item.rt_score}</td>
                   {/* <td>{item.url}</td> */}
