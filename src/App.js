@@ -46,7 +46,7 @@ class App extends Component{
     return (
       <div className="App">
         <header className="App-header">
-            Movies Table
+            Movies
         </header>
         <hr />
         <Table striped bordered hover responsive>  

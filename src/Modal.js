@@ -7,6 +7,8 @@ const Modal = ({ handleClose, show, currentMovie }) => {
     return (
       <div className={showHideClassName}>
         <section className='modal-main'>
+          <h7 className='modal-title'> Movie Details </h7>
+          <hr />
           <div> <span className='item-name'>Movie Name: </span><span className='item-value'>{currentMovie ? currentMovie.title : '' }</span></div>
           <div> <span className='item-name'>The Movie Title: </span><span className='item-value'>{currentMovie ? currentMovie.title : '' }</span></div>
           <div> <span className='item-name'>The Director’s Name: : </span><span className='item-value'>{currentMovie ? currentMovie.director : ''}</span></div>

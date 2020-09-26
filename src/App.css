@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+th {
+  width: 20%;
+}
+
+tr {
+  width: 20%;
+}
