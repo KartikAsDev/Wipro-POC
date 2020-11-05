@@ -1,80 +1,77 @@
 import React, { Component } from 'react';
 import './App.css';
-import Table from 'react-bootstrap/Table';
-import Modal from './Modal';
 
 class App extends Component{
   constructor() {
     super();
     this.state = {
-      movieItems: [],
-      show: false,
-      currentMovie: null,
+      n: '',
     }
   }
 
-  componentDidMount() {
-    fetch("https://ghibliapi.herokuapp.com/films")
-      .then(res => res.json())
-      .then(
-        (result) => {
-         this.setState({
-           movieItems: result,
-         })
-        },
-        (error) => {
-          console.log('Error', error);
-        }
-      )
-  }
 
-  showModal = (item) => {
-    this.setState({ 
-      show: true,
-      currentMovie: item,
-    });
-  }
-  
-  hideModal = () => {
-    this.setState({ show: false });
-  }
+  componentDidUpdate(props, state) {
+    document.getElementById('chessBoard').innerHTML = "";
+    var chessBoard = document.getElementById('chessBoard');
+    for (var i = 0; i < this.state.n; ++i){
+      var row = document.createElement('div')
+      row.className = 'row';
+
+      if(this.state.n%2 === 0 && i % 2 === 0) {
+        row.style.flexDirection = 'row-reverse'; 
+      } 
+      row.style.height = `${400/this.state.n}px`;
+      for (var j = 0; j < this.state.n; ++j){
+        var column = document.createElement('div')
+        column.className = 'column';
+        if(this.state.n%2 !== 0 && i%2 === 0) {
+          column.style.backgroundColor = j % 2 === 0 ? 'white' : 'black';
+        } else if(this.state.n%2 !== 0 && i%2 !== 0) {
+          column.style.backgroundColor = j % 2 === 0 ? 'black' : 'white';
+        } else {
+          column.style.backgroundColor = j % 2 === 0 ? 'white' : 'black';
+        }
+        column.style.width = `${400/this.state.n}px`;
+        column.style.height = `${400/this.state.n}px`;
+        column.id = `column${i}${j}`;
+        column.onclick = (ele) => {
+          console.log('ele inside', ele);
+          this.handleSelect(ele);
+          ele.tabIndex="0"
+          ele.target.focus();
+        }
+        row.appendChild(column)
+      }
+      chessBoard.appendChild(row)
+    }   
+   }
+
+   handleValueOfN(ele) {
+     this.setState({
+       n: ele.target.value,
+     });
+   }
+
+   handleSelect(ele) {
+    ele.target.style.backgroundColor = 'yellow';
+   }
+
+   handleClick(ele) {
+    console.log('ele', ele);
+   }
 
   render() {
-    const items = this.state.movieItems;
-
-    const moviePoster = 'https://instagram.fknu1-1.fna.fbcdn.net/v/t51.2885-15/e35/15043434_155934458210613_6676873630565007360_n.jpg?_nc_ht=instagram.fknu1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=jcrHn1-ptSMAX95R5PZ&_nc_tp=18&oh=d5da5c78a8645e8eb98b6dfaf296747c&oe=5F978ACC';
     return (
-      <div className="App">
-        <header className="App-header">
-            Movies
-        </header>
-        <hr />
-        <Table striped bordered hover responsive>  
-          <thead>
-            <tr>
-              <th>The Movie Title</th>
-              <th>The Director’s Name</th>
-              <th>Movie’s Rating</th>
-              <th>Movie Poster</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map(item => (
-                <tr key={item.id}>
-                  <td className="movieName" onClick={() => this.showModal(item)}>{item.title}</td>
-                  <td>{item.director}</td>
-                  <td>{item.rt_score}</td>
-                  {/* <td>{item.url}</td> */}
-                  <td><img src={moviePoster} alt="Movie-Image" height='30' width='30'></img></td>
-                </tr>
-              ))}
-          </tbody>    
-        </Table>
-        <Modal show={this.state.show} handleClose={this.hideModal} currentMovie={this.state.currentMovie}>
-        </Modal>
+      <div className="app">
+        <div className="inputDiv">
+          <span> Enter Grid Size </span>
+          <input value={this.state.n} onChange={(ele) => this.handleValueOfN(ele)}></input>
+        </div>
+
+        <div id="chessBoard" className="chessBoard" onClick={(ele) => this.handleClick(ele)}>
+        </div>
       </div>
     );
   }
 }
-
 export default App;
