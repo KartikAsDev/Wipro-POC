@@ -2,25 +2,23 @@
   text-align: center;
 }
 
-.chessBoard{
-  border: solid 1px black;
-  width: 400px;
-  height: 400px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: auto;
+.suggestionItem:hover{
+  background-color: #D8D8D8;
 }
 
-.column{
-  display: inline-block;
-  z-index: 10;
+ul {
+  list-style-type: none;
 }
 
-.row{
-  display: flex;
-  width: 400px;
+#suggestionModal {
+width: 25%;
+margin-left: 35%;
+box-shadow: 10px 10px 5px grey;
+}
+.app {
+  text-align: center;
 }
 
-.column:focus {
-  background-color: yellow !important;
+input {
+  padding: 10px;
 }
