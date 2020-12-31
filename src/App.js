@@ -11,8 +11,13 @@ class App extends Component{
     }
   }
 
+  /**
+   Handle click with be called when user clicks or changes the value of the search box
+   Will make call to getSuggestions to pick suggestions and set the state for the same
+   Will find the matching option from suggestions array
+   will update the bg color of the matched item
+   */
   handleClick(e) {
-    document.getElementById('suggestionModal').style.display = "block";
     document.getElementById('suggestionBox').hidden = false;
     let value = e.target.value;
     getSuggestions(value).then(suggestions => {
@@ -34,8 +39,13 @@ class App extends Component{
     });
   }
 
+  /**
+   select item will be called on selecting an item from the suggestions
+   will update the input value by setting the state input value by selected item
+   will make the suggestion list empty
+   will put the focus back to input box
+   */
   selectItem(e, data) {
-    document.getElementById('suggestionModal').style.display = "none";
     e.stopPropagation();
     e.preventDefault();
     this.setState({
@@ -51,6 +61,9 @@ class App extends Component{
   }
 
   render() {
+    /**
+     * making suggestion list here
+     */
     const showSuggestions =  <ul id="suggestionBox">
           {this.state.suggestions.map(item =>
           <li className="suggestionItem"
@@ -61,13 +74,16 @@ class App extends Component{
           </ul>
 
     return (
+      /**
+       * Onclick is used because we need to trigger handleClick when user put the focus on the input box to get and render the suggestions
+       */
       <div className="app">
         <div >
           <input name="search" 
                 type="text"
                 value={this.state.inputValue}
                 id="searchBox"
-                onChange={(e) => this.handleClick(e)}
+                onChange={(e) => this.handleClick(e)} 
                 onClick={(e) => this.handleClick(e)}>
           </input>
           <div id="suggestionModal">
