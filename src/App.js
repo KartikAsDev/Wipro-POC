@@ -18,7 +18,7 @@ class App extends Component{
    will update the bg color of the matched item
    */
   handleClick(e) {
-    document.getElementById('suggestionBox').hidden = false;
+    document.getElementById('suggestionModal').hidden = false;
     let value = e.target.value;
     getSuggestions(value).then(suggestions => {
       this.setState({
@@ -53,7 +53,7 @@ class App extends Component{
       suggestions: [],
     });
     document.getElementById('searchBox').focus();
-    document.getElementById('suggestionBox').hidden = true;
+    document.getElementById('suggestionModal').hidden = true;
   }
 
   onExitingInputBox(e) {
@@ -79,14 +79,14 @@ class App extends Component{
        */
       <div className="app">
         <div >
-          <input name="search" 
+         <span> Search : <input name="search" 
                 type="text"
                 value={this.state.inputValue}
                 id="searchBox"
                 onChange={(e) => this.handleClick(e)} 
                 onClick={(e) => this.handleClick(e)}>
-          </input>
-          <div id="suggestionModal">
+          </input></span>
+          <div id="suggestionModal" hidden>
             {showSuggestions}
           </div>
         </div>

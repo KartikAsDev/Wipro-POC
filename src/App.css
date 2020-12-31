@@ -3,7 +3,9 @@
 }
 
 .suggestionItem:hover{
-  background-color: #D8D8D8;
+  background: grey;
+  border: 1 px ;
+  border-radius: 25px;
 }
 
 ul {
@@ -11,9 +13,13 @@ ul {
 }
 
 #suggestionModal {
-width: 25%;
-margin-left: 35%;
-box-shadow: 10px 10px 5px grey;
+  width: 25%;
+  margin-left: 35%;
+  box-shadow: 10px 10px 5px grey;
+  border: 1 px ;
+  border-radius: 25px;
+  background:  #D8D7D7;
+  padding: 5px;
 }
 .app {
   text-align: center;
