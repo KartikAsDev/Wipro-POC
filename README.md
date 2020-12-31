@@ -1,7 +1,7 @@
-# movie-app
-This is for Indxx
+# search-box
+This is for Wipro
 
-To run the app, first install node modules, though I have already pushed the modules for the same, still if you mniss any packages, please feel free to install. By running
+To run the app, first install node modules, though I have already pushed the modules for the same, still if you miss any packages, please feel free to install. By running
 npm install
 
 
